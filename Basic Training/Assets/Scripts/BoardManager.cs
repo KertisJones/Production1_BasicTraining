@@ -39,7 +39,8 @@ public class BoardManager : MonoBehaviour {
     void InitialiseList()
     {
         gridPositions.Clear();
-        
+        gridPositions = new List<Vector3>();
+
         for (int x = 1; x < columns - 1; x++)
         {
             for (int y = 1; y < rows - 1; y++)
