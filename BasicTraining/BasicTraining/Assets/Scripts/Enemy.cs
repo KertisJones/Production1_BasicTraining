@@ -22,6 +22,13 @@ public class Enemy : MovingObject
         GameManager.instance.AddEnemyToList(this);
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject otherEnemy in enemies)
+        {
+            Physics2D.IgnoreCollision(otherEnemy.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+        }
+
         base.Start();
     }
 
