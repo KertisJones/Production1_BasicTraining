@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour {
         {
             timeLeft = timeBetweenSteps;
             steps += 1;
-            Debug.Log("Step");
+            //Debug.Log("Step");
 
             switch (steps % 4)
             {

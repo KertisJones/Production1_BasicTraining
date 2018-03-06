@@ -8,7 +8,7 @@ public class Enemy : MovingObject
     public int wallDamage = 2;
     public int hp = 4;
 
-    private Animator animator;
+    public Animator animator;
     private Transform target;
     private bool skipMove;
     public AudioClip enemyAttack1;
@@ -23,13 +23,34 @@ public class Enemy : MovingObject
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject otherEnemy in enemies)
+        base.Start();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Debug.Log("TRIGGER ENTER");
+        if (other.tag == "Enemy")
         {
-            Physics2D.IgnoreCollision(otherEnemy.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+            if(animator != null)
+            {
+                animator.SetBool("isIncorporeal", true);
+            }
+            incorporeal = true;
+            hp = 999999;
+            playerDamage = 999999;
         }
 
-        base.Start();
+        if (other.gameObject.tag == "Player" && incorporeal)
+        {
+            //Debug.Log("incoporeal touched player T");
+            other.GetComponent<Player>().LoseFood(playerDamage);
+
+            if (animator != null)
+            {
+                animator.SetTrigger("enemyAttack");
+            }
+            SoundManager.instance.RandomizeSfx(enemyAttack1, enemyAttack2);
+        }
     }
 
     protected override void AttemptMove<T>(int xDir, int yDir)
@@ -64,8 +85,10 @@ public class Enemy : MovingObject
 
         hitPlayer.LoseFood(playerDamage);
 
-        animator.SetTrigger("enemyAttack");
-
+        if (animator != null)
+        {
+            animator.SetTrigger("enemyAttack");
+        }
         SoundManager.instance.RandomizeSfx(enemyAttack1, enemyAttack2);
 
 
@@ -74,7 +97,10 @@ public class Enemy : MovingObject
     {
         Wall hitWall = component as Wall;
         hitWall.DamageWall(wallDamage);
-        animator.SetTrigger("enemyAttack");
+        if (animator != null)
+        {
+            animator.SetTrigger("enemyAttack");
+        }
     }
     public void TakeDamage(int damage)
     {
@@ -87,5 +113,17 @@ public class Enemy : MovingObject
     }
     protected override void EnemyAttack<T>(T component)
     {
+        /*if(incorporeal)
+        {
+            Player hitPlayer = component as Player;
+
+            hitPlayer.LoseFood(playerDamage);
+
+            if (animator != null)
+            {
+                animator.SetTrigger("enemyAttack");
+            }
+            SoundManager.instance.RandomizeSfx(enemyAttack1, enemyAttack2);
+        }*/
     }
 }

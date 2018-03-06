@@ -11,6 +11,8 @@ public abstract class MovingObject : MonoBehaviour
 	private float inverseMoveTime;
     private object other;
 
+    public bool incorporeal = false;
+
     // Use this for initialization
     protected virtual void Start () {
 		boxCollider = GetComponent<BoxCollider2D> ();
@@ -27,7 +29,7 @@ public abstract class MovingObject : MonoBehaviour
 		hit = Physics2D.Linecast (start, end, blockingLayer);
 		boxCollider.enabled = true;
 
-		if (hit.transform == null) {// || (this.tag == "Enemy" && hit.distance < 0.5)) {
+		if (hit.transform == null || incorporeal) {
 			StartCoroutine (SmoothMovement (end));
 			return true;
 		}
@@ -86,6 +88,11 @@ public abstract class MovingObject : MonoBehaviour
         }
         if (!canMove && myComponent != null && enemyComponent != null)
         {
+            EnemyAttack(enemyComponent);
+        }
+        if (incorporeal && myComponent != null && enemyComponent != null)
+        {
+            Debug.Log("Incoporeal attack!");
             EnemyAttack(enemyComponent);
         }
     }
