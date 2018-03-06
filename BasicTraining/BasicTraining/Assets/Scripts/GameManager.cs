@@ -81,6 +81,10 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         timeLeft -= Time.deltaTime;
+        if (timeLeft < timeBetweenSteps * 0.9)
+        {
+            playersTurn = false;
+        }
         if(timeLeft < 0)
         {
             timeLeft = timeBetweenSteps;
@@ -107,20 +111,20 @@ public class GameManager : MonoBehaviour {
                     break;
             }
 
-        }
-
-
-        if (playersTurn || enemiesMoving || doingSetup)
-			return;
-        for (int currBaddy = 0; currBaddy < enemies.Count; currBaddy++)
-        {
-            if (enemies[currBaddy] == null)
+            if (playersTurn || enemiesMoving || doingSetup)
+                return;
+            for (int currBaddy = 0; currBaddy < enemies.Count; currBaddy++)
             {
-                enemies.RemoveAt(currBaddy);
+                if (enemies[currBaddy] == null)
+                {
+                    enemies.RemoveAt(currBaddy);
+                }
             }
+
+            MoveEnemies();
+
         }
 
-        StartCoroutine (MoveEnemies ());
     }
 
 	public void AddEnemyToList(Enemy script)
@@ -128,17 +132,17 @@ public class GameManager : MonoBehaviour {
 		enemies.Add (script);
 	}
 
-	IEnumerator MoveEnemies()
+	public void MoveEnemies()
 	{
         enemiesMoving = true;
-		yield return new WaitForSeconds (turnDelay);
+		//yield return new WaitForSeconds (turnDelay);
 		if (enemies.Count == 0) {
-			yield return new WaitForSeconds (turnDelay);
+			//yield return new WaitForSeconds (turnDelay);
 		}
 
 		for (int i = 0; i < enemies.Count; i++) {
 			enemies [i].MoveEnemy ();
-			yield return new WaitForSeconds (enemies [i].moveTime);
+			//yield return new WaitForSeconds (enemies [i].moveTime);
 		}
 
 		playersTurn = true;
