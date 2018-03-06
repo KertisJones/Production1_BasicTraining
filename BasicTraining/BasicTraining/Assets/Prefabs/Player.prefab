@@ -106,15 +106,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3371ad31f38ce45178e8bf7516b97e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 0.1
+  moveTime: 0.05
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
+  incorporeal: 0
   wallDamage: 1
   enemyDamage: 1
   pointsPerFood: 10
   pointsPerSoda: 20
-  restartLevelDelay: 1
+  restartLevelDelay: 0.25
   foodText: {fileID: 0}
   moveSound1: {fileID: 8300000, guid: 892962212a4b74d1c9f578a3b6ea6439, type: 3}
   moveSound2: {fileID: 8300000, guid: a826bc3d758db43d6ae9caf415b63d1d, type: 3}
@@ -123,6 +124,7 @@ MonoBehaviour:
   drinkSound1: {fileID: 8300000, guid: b6b608537288246c9a464915db27bf52, type: 3}
   drinkSound2: {fileID: 8300000, guid: bcb9dda73ee914d3e8f252895f73f461, type: 3}
   gameOverSound: {fileID: 8300000, guid: e2beefeb2273f4efe992adf5b8d67c29, type: 3}
+  food: 0
 --- !u!212 &21225248
 SpriteRenderer:
   m_ObjectHideFlags: 1
