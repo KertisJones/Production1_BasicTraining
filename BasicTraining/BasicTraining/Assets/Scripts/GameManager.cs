@@ -123,8 +123,7 @@ public class GameManager : MonoBehaviour {
 
             MoveEnemies();
 
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().food--;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().foodText.text = "Food: " + GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().food;
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ().LoseFood (1, false);
 
         }
 

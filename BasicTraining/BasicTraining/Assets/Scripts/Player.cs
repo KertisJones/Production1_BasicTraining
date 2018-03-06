@@ -174,11 +174,15 @@ public class Player : MovingObject {
         Application.LoadLevel (Application.loadedLevel);
 	}
 
-	public void LoseFood (int loss)
+	public void LoseFood (int loss, bool hideLoss = true)
 	{
-		animator.SetTrigger ("playerHit");
 		food -= loss;
-		foodText.text = "-" + loss + " Food: " + food;
+		if (hideLoss) {
+			animator.SetTrigger ("playerHit");
+			foodText.text = "-" + loss + " Food: " + food;
+		} else {
+			foodText.text = "Food: " + food;
+		}
 		CheckIfGameOver ();
 	}
 
