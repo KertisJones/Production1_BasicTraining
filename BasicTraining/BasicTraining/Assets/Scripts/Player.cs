@@ -22,7 +22,7 @@ public class Player : MovingObject {
 	public AudioClip gameOverSound;
 
     private Animator animator;
-	private int food;
+	public int food;
 	private Vector2 touchOrigin = -Vector2.one;
 
     private void Awake()
@@ -59,11 +59,18 @@ public class Player : MovingObject {
 
 
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
+        horizontal = (int)Input.GetAxisRaw("Horizontal");
+        vertical = (int)Input.GetAxisRaw("Vertical");
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    horizontal = (int)Input.GetAxisRaw("Horizontal"); //vertical = (int)Input.GetAxisRaw("Vertical");
+        //}
+        //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    vertical = (int)Input.GetAxisRaw("Vertical"); //horizontal = (int)Input.GetAxisRaw("Vertical");
+        //}
 
-		horizontal = (int)Input.GetAxisRaw ("Horizontal");
-		vertical = (int)Input.GetAxisRaw ("Vertical");
-
-		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
 			var posVec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			var x = Mathf.RoundToInt(posVec.x) - transform.position.x;
 			var y = Mathf.RoundToInt(posVec.y) - transform.position.y;
@@ -106,8 +113,8 @@ public class Player : MovingObject {
 
 	protected override void AttemptMove <T> (int xDir, int yDir)
 	{
-		food--;
-		foodText.text = "Food: " + food;
+		//food--;
+		//foodText.text = "Food: " + food;
 
 		base.AttemptMove <T> (xDir, yDir);
 
