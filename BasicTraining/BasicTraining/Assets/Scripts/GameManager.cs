@@ -20,9 +20,19 @@ public class GameManager : MonoBehaviour {
 	private bool enemiesMoving;
 	private bool doingSetup;
 
-	// Use this for initialization
-	void Awake () {
-		if (instance == null)
+    public float timeBetweenSteps = 0.5f;
+    private float timeLeft = 0.5f;
+    public int steps = 0;
+    public AudioClip marchSound1;
+    public AudioClip marchSound2;
+    public AudioClip marchSound3;
+    public AudioClip marchSound4;
+
+    // Use this for initialization
+    void Awake () {
+        timeLeft = timeBetweenSteps;
+
+        if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy (gameObject);
@@ -69,8 +79,38 @@ public class GameManager : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if (playersTurn || enemiesMoving || doingSetup)
+	void FixedUpdate () {
+        timeLeft -= Time.deltaTime;
+        if(timeLeft < 0)
+        {
+            timeLeft = timeBetweenSteps;
+            steps += 1;
+            Debug.Log("Step");
+
+            switch (steps % 4)
+            {
+                case 0:
+                    AudioSource.PlayClipAtPoint(marchSound4, new Vector3(3.5f, 3.5f, -10f));
+                    //SoundManager.instance.PlaySingle(marchSound4);
+                    break;
+                case 1:
+                    AudioSource.PlayClipAtPoint(marchSound1, new Vector3(3.5f, 3.5f, -10f));
+                    //SoundManager.instance.PlaySingle(marchSound1);
+                    break;
+                case 2:
+                    AudioSource.PlayClipAtPoint(marchSound2, new Vector3(3.5f, 3.5f, -10f));
+                    //SoundManager.instance.PlaySingle(marchSound2);
+                    break;
+                case 3:
+                    AudioSource.PlayClipAtPoint(marchSound3, new Vector3(3.5f, 3.5f, -10f));
+                    //SoundManager.instance.PlaySingle(marchSound3);
+                    break;
+            }
+
+        }
+
+
+        if (playersTurn || enemiesMoving || doingSetup)
 			return;
         for (int currBaddy = 0; currBaddy < enemies.Count; currBaddy++)
         {

@@ -95,6 +95,12 @@ MonoBehaviour:
   playerFoodPoints: 100
   playersTurn: 1
   level: 1
+  timeBetweenSteps: 0.5
+  steps: 0
+  marchSound1: {fileID: 8300000, guid: 90d4740e464e3bf4fb40ca8536ec7628, type: 3}
+  marchSound2: {fileID: 8300000, guid: 52872896a08fc974f841a04878264d3f, type: 3}
+  marchSound3: {fileID: 8300000, guid: 769a0e314023b9e4d89bdb69c1e10915, type: 3}
+  marchSound4: {fileID: 8300000, guid: 0c6a467b4dfbafe4eb469c52c7c83b16, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
