@@ -78,12 +78,12 @@ public class Enemy : MovingObject
     }
     public void TakeDamage(int damage)
     {
-        //hp -= damage;
+        hp -= damage;
 
-        //if (hp <= 0)
-        //{
-        //    DestroyObject(gameObject);
-        //}
+        if (hp <= 0)
+        {
+            DestroyObject(gameObject);
+        }
     }
     protected override void EnemyAttack<T>(T component)
     {

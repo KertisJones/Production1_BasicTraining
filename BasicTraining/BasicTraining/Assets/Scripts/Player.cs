@@ -151,13 +151,13 @@ public class Player : MovingObject {
     protected override void EnemyAttack<T>(T component)
     {
 
-        //Enemy enemy = component as Enemy;
-        //animator.SetTrigger("playerChop");
-        //enemy.TakeDamage(enemyDamage);
+        Enemy enemy = component as Enemy;
+        animator.SetTrigger("playerChop");
+        enemy.TakeDamage(enemyDamage);
 
-        //{
-        //    LoseFood(5);
-        //}
+        {
+            LoseFood(5);
+        }
 
     }
     private void Restart()

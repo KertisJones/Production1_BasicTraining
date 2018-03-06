@@ -27,7 +27,7 @@ public abstract class MovingObject : MonoBehaviour
 		hit = Physics2D.Linecast (start, end, blockingLayer);
 		boxCollider.enabled = true;
 
-		if (hit.transform == null) {
+		if (hit.transform == null) {// || (this.tag == "Enemy" && hit.distance < 0.5)) {
 			StartCoroutine (SmoothMovement (end));
 			return true;
 		}
