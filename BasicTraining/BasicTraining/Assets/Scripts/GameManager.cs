@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         timeLeft -= Time.deltaTime;
-        if (timeLeft < timeBetweenSteps * 0.9)
+        if (timeLeft < timeBetweenSteps * 0.8)
         {
             playersTurn = false;
         }
