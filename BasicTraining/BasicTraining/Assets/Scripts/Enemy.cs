@@ -11,6 +11,7 @@ public class Enemy : MovingObject
     public Animator animator;
     private Transform target;
     private bool skipMove;
+    private bool skipMove02 = false;
     public AudioClip enemyAttack1;
     public AudioClip enemyAttack2;
 
@@ -31,7 +32,11 @@ public class Enemy : MovingObject
         //Debug.Log("TRIGGER ENTER");
         if (other.tag == "Enemy")
         {
-            if(animator != null)
+            if(other.GetComponent<Enemy>().incorporeal)
+            {
+                Destroy(gameObject);
+            }
+            if (animator != null)
             {
                 animator.SetBool("isIncorporeal", true);
             }
@@ -57,8 +62,17 @@ public class Enemy : MovingObject
     {
         if (skipMove)
         {
-            skipMove = false;
-            return;
+            if (incorporeal && skipMove02)
+            {
+                skipMove = false;
+                skipMove02 = false;
+            }
+            else
+            {
+                skipMove = false;
+                skipMove02 = true;
+                return;
+            }            
         }
 
         base.AttemptMove<T>(xDir, yDir);

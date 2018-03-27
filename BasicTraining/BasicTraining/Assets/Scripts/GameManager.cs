@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
     public AudioClip marchSound2;
     public AudioClip marchSound3;
     public AudioClip marchSound4;
+    public AudioClip deathSound;
 
     // Use this for initialization
     void Awake () {
@@ -73,7 +74,8 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver()
 	{
-		levelText.text = "Day " + level + ": MIA";
+        AudioSource.PlayClipAtPoint(deathSound, new Vector3(7.525f, 3.5f, -10f));
+        levelText.text = "Day " + level + ": MIA";
 		levelImage.SetActive (true);
 		enabled = false;
 	}
@@ -94,19 +96,19 @@ public class GameManager : MonoBehaviour {
             switch (steps % 4)
             {
                 case 0:
-                    AudioSource.PlayClipAtPoint(marchSound4, new Vector3(3.5f, 3.5f, -10f));
+                    AudioSource.PlayClipAtPoint(marchSound4, new Vector3(7.525f, 3.5f, -10f));
                     //SoundManager.instance.PlaySingle(marchSound4);
                     break;
                 case 1:
-                    AudioSource.PlayClipAtPoint(marchSound1, new Vector3(3.5f, 3.5f, -10f));
+                    AudioSource.PlayClipAtPoint(marchSound1, new Vector3(7.525f, 3.5f, -10f));
                     //SoundManager.instance.PlaySingle(marchSound1);
                     break;
                 case 2:
-                    AudioSource.PlayClipAtPoint(marchSound2, new Vector3(3.5f, 3.5f, -10f));
+                    AudioSource.PlayClipAtPoint(marchSound2, new Vector3(7.525f, 3.5f, -10f));
                     //SoundManager.instance.PlaySingle(marchSound2);
                     break;
                 case 3:
-                    AudioSource.PlayClipAtPoint(marchSound3, new Vector3(3.5f, 3.5f, -10f));
+                    AudioSource.PlayClipAtPoint(marchSound3, new Vector3(7.525f, 3.5f, -10f));
                     //SoundManager.instance.PlaySingle(marchSound3);
                     break;
             }
