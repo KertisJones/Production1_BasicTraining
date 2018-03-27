@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 
@@ -37,7 +38,7 @@ public class Player : MovingObject {
 
 		food = GameManager.instance.playerFoodPoints;
 
-		foodText.text = "Food: " + food;
+		foodText.text = "Energy: " + food;
         
 
 
@@ -135,12 +136,12 @@ public class Player : MovingObject {
 			enabled = false;
 		} else if (other.tag == "Food") {
 			food += pointsPerFood;
-			foodText.text = "+" + pointsPerFood + " Food: " + food;
+			foodText.text = "+" + pointsPerFood + " Energy: " + food;
 			SoundManager.instance.RandomizeSfx(eatSound1, eatSound2);
 			other.gameObject.SetActive (false);
 		} else if (other.tag == "Soda") {
 			food += pointsPerSoda;
-			foodText.text = "+" + pointsPerSoda + " Food: " + food;
+			foodText.text = "+" + pointsPerSoda + " Energy: " + food;
 			SoundManager.instance.RandomizeSfx(drinkSound1, drinkSound2);
 			other.gameObject.SetActive (false);
         }else if (other.tag == "Thorns")
@@ -171,7 +172,8 @@ public class Player : MovingObject {
 	{
         GameObject.Find("GameManager(Clone)").GetComponent<GameManager>().level += 1;
 
-        Application.LoadLevel (Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Application.LoadLevel (Application.loadedLevel);
 	}
 
 	public void LoseFood (int loss, bool hideLoss = true)
@@ -179,9 +181,9 @@ public class Player : MovingObject {
 		food -= loss;
 		if (hideLoss) {
 			animator.SetTrigger ("playerHit");
-			foodText.text = "-" + loss + " Food: " + food;
+			foodText.text = "-" + loss + " Energy: " + food;
 		} else {
-			foodText.text = "Food: " + food;
+			foodText.text = "Energy: " + food;
 		}
 		CheckIfGameOver ();
 	}
