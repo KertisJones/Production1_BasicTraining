@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 22a3af9f490e88247b10f0c93d0a2196
-timeCreated: 1522128675
+timeCreated: 1522152076
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -150,10 +150,10 @@ TextureImporter:
       name: soldier sprite_0
       rect:
         serializedVersion: 2
-        x: 292
-        y: 32
-        width: 23
-        height: 30
+        x: 290
+        y: 96
+        width: 27
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: soldier sprite_1
       rect:
         serializedVersion: 2
-        x: 324
-        y: 32
-        width: 23
-        height: 31
+        x: 322
+        y: 96
+        width: 27
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,9 +179,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 356
-        y: 32
-        width: 23
-        height: 30
+        y: 96
+        width: 24
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
